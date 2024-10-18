@@ -53,6 +53,7 @@ kubectl get nodes
 
 ```
 git clone https://github.com/mbookham7/crdb-banking-workshop.git
+cd crdb-banking-workshop
 ```
 
 
