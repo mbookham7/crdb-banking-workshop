@@ -1,6 +1,4 @@
 
-ssh -i "/Users/mikebookham/Downloads/bookham.pem" ubuntu@ec2-13-48-45-225.eu-north-1.compute.amazonaws.com
-
 
 # Add Docker's official GPG key:
 ```
