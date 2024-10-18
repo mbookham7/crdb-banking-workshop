@@ -41,7 +41,7 @@ cockroach version
 
 Create a cluster named `kube-doom` with just a single server node:
 ```
-k3d cluster create kube-doom
+k3d cluster create banking-workshop
 ```
 
 Use the new cluster with kubectl, e.g.:
@@ -50,6 +50,12 @@ kubectl get nodes
 ```
 
 ## Deploy CockroachDB into the the k3d cluster
+
+```
+git clone https://github.com/mbookham7/crdb-banking-workshop.git
+```
+
+
 Create three variables with the region names desired.
 ```
 export eks_region="eu-west-1"
