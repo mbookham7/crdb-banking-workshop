@@ -18,8 +18,7 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-sudo usermod -aG docker $USER
-newgrp docker
+sudo usermod -aG docker $USER && newgrp docker
 docker run hello-world
 ```
 
@@ -39,7 +38,7 @@ sudo cp cockroach-*/cockroach /usr/local/bin/
 cockroach version
 ```
 
-Create a cluster named `kube-doom` with just a single server node:
+Create a cluster named `banking-workshop` with just a single server node:
 ```
 k3d cluster create banking-workshop
 ```
@@ -264,6 +263,13 @@ kubectl apply -f manifest/bank-client-deploy.yaml -n $eks_region-roach-bank
 kubectl apply -f manifest/bank-client-deploy.yaml -n $gke_region-roach-bank
 kubectl apply -f manifest/bank-client-deploy.yaml -n $aks_region-roach-bank
 ```
+
+Ingress Roach Bank
+```
+kubectl apply -f manifest/ingress.yaml -n $eks_region-roach-bank
+```
+
+
 
 ## Clean Up
 To clean up the resources delete the cluster and delete the certificates.

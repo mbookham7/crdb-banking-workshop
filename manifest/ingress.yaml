@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: roach-bank-ingress
+spec:
+  rules:
+  - https:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bank-server
+            port:
+              name: 8090-8090
