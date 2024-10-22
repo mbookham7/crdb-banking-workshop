@@ -34,7 +34,7 @@ metadata:
   name: bank-server
 spec:
   ports:
-  - name: 8090-8090
+  - name: http
     port: 8090
     protocol: TCP
     targetPort: 8090
