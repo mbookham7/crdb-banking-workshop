@@ -4,7 +4,7 @@ metadata:
   name: roach-bank-ingress
 spec:
   rules:
-  - https:
+  - http:
       paths:
       - path: /
         pathType: Prefix
