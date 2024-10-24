@@ -147,7 +147,7 @@ metadata:
   namespace: eu-west-1
 spec:
   serviceName: "cockroachdb"
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: cockroachdb
