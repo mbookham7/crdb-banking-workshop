@@ -40,6 +40,6 @@ spec:
     targetPort: 8090
   selector:
     app: bank-server
-  type: LoadBalancer
+  type: ClusterIP
 status:
   loadBalancer: {}
