@@ -194,10 +194,10 @@ spec:
         # Note that requests and limits should have identical values.
         resources:
           requests:
-            cpu: "1"
+            cpu: "0.5"
             memory: "1Gi"
           limits:
-            cpu: "1"
+            cpu: "0.5"
             memory: "1Gi" 
         ports:
         - containerPort: 26257

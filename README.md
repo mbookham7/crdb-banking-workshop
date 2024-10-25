@@ -40,7 +40,7 @@ cockroach version
 
 Create a cluster named `banking-workshop` with just a single server node:
 ```
-k3d cluster create banking-workshop
+k3d cluster create banking-workshop --api-port 6550 -p "8081:80@loadbalancer"
 ```
 
 Use the new cluster with kubectl, e.g.:
