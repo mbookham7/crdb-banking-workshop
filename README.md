@@ -40,7 +40,7 @@ cockroach version
 
 Create a cluster named `banking-workshop` with just a single server node:
 ```
-k3d cluster create banking-workshop --api-port 6550 -p "8081:80@loadbalancer"
+k3d cluster create banking-workshop --api-port 6550 -p "8090:8090@loadbalancer" --port '8080:8080@loadbalancer'
 ```
 
 Use the new cluster with kubectl, e.g.:
@@ -266,7 +266,8 @@ kubectl apply -f manifest/bank-client-deploy.yaml -n $aks_region-roach-bank
 
 Ingress Roach Bank
 ```
-kubectl apply -f manifest/ingress.yaml -n $eks_region-roach-bank
+kubectl apply -f manifest/crdb-ingress.yaml -n $eks_region-roach-bank
+kubectl apply -f manifest/roach-bank-ingress.yaml -n $eks_region-roach-bank
 ```
 
 
