@@ -40,7 +40,7 @@ cockroach version
 
 Create a cluster named `banking-workshop` with just a single server node:
 ```
-k3d cluster create banking-workshop --api-port 6550 -p "8090:8090@loadbalancer" --port '8080:8080@loadbalancer'
+k3d cluster create banking-workshop --api-port 6550 -p "8081:80@loadbalancer"
 ```
 
 Use the new cluster with kubectl, e.g.:
@@ -278,4 +278,6 @@ To clean up the resources delete the cluster and delete the certificates.
 k3d cluster delete kube-doom
 rm -R certs my-safe-directory
 ```
+
+
 
