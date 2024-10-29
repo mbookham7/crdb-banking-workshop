@@ -88,7 +88,7 @@ spec:
     name: http
   selector:
     app: cockroachdb
-  type: LoadBalancer
+  type: NodePort
   
 ---
 apiVersion: v1
