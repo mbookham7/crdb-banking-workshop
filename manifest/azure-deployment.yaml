@@ -41,6 +41,6 @@ spec:
     NodePort: 30220
   selector:
     app: bank-server
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}
