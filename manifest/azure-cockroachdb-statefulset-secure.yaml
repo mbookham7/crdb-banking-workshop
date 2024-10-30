@@ -82,10 +82,12 @@ spec:
   - port: 26257
     targetPort: 26257
     name: grpc
+    nodePort: 30200
   # The secondary port serves the UI as well as health and debug endpoints.
   - port: 8080
     targetPort: 8080
     name: http
+    nodePort: 30210
   selector:
     app: cockroachdb
   type: NodePort
