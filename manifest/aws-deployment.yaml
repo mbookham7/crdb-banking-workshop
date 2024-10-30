@@ -38,7 +38,7 @@ spec:
     port: 8090
     protocol: TCP
     targetPort: 8090
-    NodePort: 30120
+    nodePort: 30120
   selector:
     app: bank-server
   type: NodePort
