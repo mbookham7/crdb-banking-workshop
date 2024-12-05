@@ -7,5 +7,5 @@ data:
     connect http://bank-server:8090/api
     set-thread-pool-size --size 300
     set-pool-size --size 500
-    transfer --concurrency 2 --limit 1000
-    balance --followerReads --concurrency 1 --limit 1000
+    transfer --concurrency 2 --limit 100
+    balance --followerReads --concurrency 1 --limit 100
