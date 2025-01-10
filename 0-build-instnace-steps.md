@@ -41,7 +41,6 @@ cockroach version
 Create a cluster named `banking-workshop` with just a single server node:
 ```
 k3d cluster create banking-workshop --api-port 6550 -p 30000-30400:30000-30400@server:0
-
 ```
 
 Use the new cluster with kubectl, e.g.:

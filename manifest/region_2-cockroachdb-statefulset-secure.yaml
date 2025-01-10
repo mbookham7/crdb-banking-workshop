@@ -145,7 +145,7 @@ kind: StatefulSet
 metadata:
   name: cockroachdb
   # TODO: Use this field to specify a namespace other than "default" in which to deploy CockroachDB (e.g., us-east-1).
-  namespace: uksouth
+  namespace: us-east-1
 spec:
   serviceName: "cockroachdb"
   replicas: 1
