@@ -1,25 +1,25 @@
-export eks_region="eu-west-1"
-export gke_region="europe-west4"
-export aks_region="uksouth"
+export region_1="eu-west-1"
+export region_2="us-east-1"
+export region_3="eu-north-1"
 
 
 Check the pods are running.
 ```
-kubectl get po -n $eks_region
-kubectl get po -n $gke_region
-kubectl get po -n $aks_region
+kubectl get po -n $region_1
+kubectl get po -n $region_2
+kubectl get po -n $region_3
 ```
 
 Increase the number of replicas for each of the StatefulSet in each of the regions.
 ```
-kubectl scale statefulsets cockroachdb --replicas=2 -n $eks_region
-kubectl scale statefulsets cockroachdb --replicas=2 -n $gke_region
-kubectl scale statefulsets cockroachdb --replicas=2 -n $aks_region
+kubectl scale statefulsets cockroachdb --replicas=2 -n $region_1
+kubectl scale statefulsets cockroachdb --replicas=2 -n $region_2
+kubectl scale statefulsets cockroachdb --replicas=2 -n $region_3
 ```
 
 Get the statefulSet from each region.
 ```
-kubectl get statefulsets cockroachdb -n $eks_region
-kubectl get statefulsets cockroachdb -n $gke_region
-kubectl get statefulsets cockroachdb -n $aks_region
+kubectl get statefulsets cockroachdb -n $region_1
+kubectl get statefulsets cockroachdb -n $region_2
+kubectl get statefulsets cockroachdb -n $region_3
 ```

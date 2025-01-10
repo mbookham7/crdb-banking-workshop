@@ -59,16 +59,16 @@ cd crdb-banking-workshop
 
 Create three variables with the region names desired.
 ```
-export eks_region="eu-west-1"
-export gke_region="europe-west4"
-export aks_region="uksouth"
+export region_1="eu-west-1"
+export region_2="us-east-1"
+export region_3="eu-north-1"
 ```
 
 Create three separate namespaces.
 ```
-kubectl create namespace $eks_region
-kubectl create namespace $gke_region 
-kubectl create namespace $aks_region
+kubectl create namespace $region_1
+kubectl create namespace $region_2 
+kubectl create namespace $region_3
 ```
 
 We are going to create the certificates required to deploy CockroachDB.
@@ -96,17 +96,17 @@ Add these certificates as kubernetes secrets into each of the namespaces.
 kubectl create secret \
 generic cockroachdb.client.root \
 --from-file=certs \
---namespace $eks_region
+--namespace $region_1
 
 kubectl create secret \
 generic cockroachdb.client.root \
 --from-file=certs \
---namespace $gke_region
+--namespace $region_2
 
 kubectl create secret \
 generic cockroachdb.client.root \
 --from-file=certs \
---namespace $aks_region
+--namespace $region_3
 ```
 
 Create the node certificates for each region.
@@ -114,11 +114,11 @@ Create the node certificates for each region.
 cockroach cert create-node \
 localhost 127.0.0.1 \
 cockroachdb-public \
-cockroachdb-public.$eks_region \
-cockroachdb-public.$eks_region.svc.cluster.local \
+cockroachdb-public.$region_1 \
+cockroachdb-public.$region_1.svc.cluster.local \
 "*.cockroachdb" \
-"*.cockroachdb.$eks_region" \
-"*.cockroachdb.$eks_region.svc.cluster.local" \
+"*.cockroachdb.$region_1" \
+"*.cockroachdb.$region_1.svc.cluster.local" \
 --certs-dir=certs \
 --ca-key=my-safe-directory/ca.key
 ```
@@ -127,7 +127,7 @@ Add it as a secret in to the first namespace.
 kubectl create secret \
 generic cockroachdb.node \
 --from-file=certs \
---namespace $eks_region
+--namespace $region_1
 ```
 
 ```
@@ -140,11 +140,11 @@ Now do the same again for the second region.
 cockroach cert create-node \
 localhost 127.0.0.1 \
 cockroachdb-public \
-cockroachdb-public.$gke_region \
-cockroachdb-public.$gke_region.svc.cluster.local \
+cockroachdb-public.$region_2 \
+cockroachdb-public.$region_2.svc.cluster.local \
 "*.cockroachdb" \
-"*.cockroachdb.$gke_region" \
-"*.cockroachdb.$gke_region.svc.cluster.local" \
+"*.cockroachdb.$region_2" \
+"*.cockroachdb.$region_2.svc.cluster.local" \
 --certs-dir=certs \
 --ca-key=my-safe-directory/ca.key
 ```
@@ -154,7 +154,7 @@ Create the secret in the second region.
 kubectl create secret \
 generic cockroachdb.node \
 --from-file=certs \
---namespace $gke_region
+--namespace $region_2
 ```
 
 ```
@@ -167,11 +167,11 @@ Now the finally the third region.
 cockroach cert create-node \
 localhost 127.0.0.1 \
 cockroachdb-public \
-cockroachdb-public.$aks_region \
-cockroachdb-public.$aks_region.svc.cluster.local \
+cockroachdb-public.$region_3 \
+cockroachdb-public.$region_3.svc.cluster.local \
 "*.cockroachdb" \
-"*.cockroachdb.$aks_region" \
-"*.cockroachdb.$aks_region.svc.cluster.local" \
+"*.cockroachdb.$region_3" \
+"*.cockroachdb.$region_3.svc.cluster.local" \
 --certs-dir=certs \
 --ca-key=my-safe-directory/ca.key
 ```
@@ -181,7 +181,7 @@ Upload the secret.
 kubectl create secret \
 generic cockroachdb.node \
 --from-file=certs \
---namespace $aks_region
+--namespace $region_3
 ```
 
 ```
@@ -192,15 +192,15 @@ rm certs/node.key
 Deploy the three separate StatefulSet.
 > There are some hard codes region names in these files. If you have changed the region names you will need to edit these files. You may also want to adjust the replica count and resource requests and limits depending on your computer spec.
 ```
-kubectl apply -f manifest/aws-cockroachdb-statefulset-secure.yaml -n $eks_region
-kubectl apply -f manifest/gke-cockroachdb-statefulset-secure.yaml -n $gke_region
-kubectl apply -f manifest/azure-cockroachdb-statefulset-secure.yaml -n $aks_region
+kubectl apply -f manifest/aws-cockroachdb-statefulset-secure.yaml -n $region_1
+kubectl apply -f manifest/gke-cockroachdb-statefulset-secure.yaml -n $region_2
+kubectl apply -f manifest/azure-cockroachdb-statefulset-secure.yaml -n $region_3
 ```
 
 Once the pods are deployed we need to initialize the cluster. This is done by 'execing' into the container and running the `cockroach init` command.
 ```
 kubectl exec \
---namespace $eks_region \
+--namespace $region_1 \
 -it cockroachdb-0 \
 -- /cockroach/cockroach init \
 --certs-dir=/cockroach/cockroach-certs
@@ -208,18 +208,18 @@ kubectl exec \
 
 Check that all the pods have started successfully.
 ```
-kubectl get pods --namespace $eks_region
-kubectl get pods --namespace $gke_region
-kubectl get pods --namespace $aks_region
+kubectl get pods --namespace $region_1
+kubectl get pods --namespace $region_2
+kubectl get pods --namespace $region_3
 ```
 
 Next, create a secure client in the first region.
 ```
-kubectl create -f manifest/client-secure.yaml --namespace $eks_region
+kubectl create -f manifest/client-secure.yaml --namespace $region_1
 ```
 
 ```
-kubectl exec -it cockroachdb-client-secure -n $eks_region -- ./cockroach sql --certs-dir=/cockroach-certs --host=cockroachdb-public
+kubectl exec -it cockroachdb-client-secure -n $region_1 -- ./cockroach sql --certs-dir=/cockroach-certs --host=cockroachdb-public
 ```
 
 ```
@@ -230,39 +230,39 @@ USE roach_bank;
 \q
 ```
 
-export eks_region="eu-west-1"
-export gke_region="europe-west4"
-export aks_region="uksouth"
+export region_1="eu-west-1"
+export region_2="europe-west4"
+export region_3="uksouth"
 
 
 ```
-kubectl create namespace $eks_region-roach-bank
-kubectl create namespace $gke_region-roach-bank
-kubectl create namespace $aks_region-roach-bank
+kubectl create namespace $region_1-roach-bank
+kubectl create namespace $region_2-roach-bank
+kubectl create namespace $region_3-roach-bank
 ```
 
 ```
-kubectl apply -f ./manifest/aws-deployment.yaml -n $eks_region-roach-bank
-kubectl apply -f ./manifest/gke-deployment.yaml -n $gke_region-roach-bank
-kubectl apply -f ./manifest/azure-deployment.yaml -n $aks_region-roach-bank
+kubectl apply -f ./manifest/aws-deployment.yaml -n $region_1-roach-bank
+kubectl apply -f ./manifest/gke-deployment.yaml -n $region_2-roach-bank
+kubectl apply -f ./manifest/azure-deployment.yaml -n $region_3-roach-bank
 ```
 
 ```
-kubectl get po -n $eks_region-roach-bank
-kubectl get po -n $gke_region-roach-bank
-kubectl get po -n $aks_region-roach-bank
+kubectl get po -n $region_1-roach-bank
+kubectl get po -n $region_2-roach-bank
+kubectl get po -n $region_3-roach-bank
 ```
 
 ```
-kubectl apply -f ./manifest/bank-client-config.yaml -n $eks_region-roach-bank
-kubectl apply -f ./manifest/bank-client-config.yaml -n $gke_region-roach-bank
-kubectl apply -f ./manifest/bank-client-config.yaml -n $aks_region-roach-bank
+kubectl apply -f ./manifest/bank-client-config.yaml -n $region_1-roach-bank
+kubectl apply -f ./manifest/bank-client-config.yaml -n $region_2-roach-bank
+kubectl apply -f ./manifest/bank-client-config.yaml -n $region_3-roach-bank
 ```
 
 ```
-kubectl apply -f manifest/bank-client-deploy.yaml -n $eks_region-roach-bank
-kubectl apply -f manifest/bank-client-deploy.yaml -n $gke_region-roach-bank
-kubectl apply -f manifest/bank-client-deploy.yaml -n $aks_region-roach-bank
+kubectl apply -f manifest/bank-client-deploy.yaml -n $region_1-roach-bank
+kubectl apply -f manifest/bank-client-deploy.yaml -n $region_2-roach-bank
+kubectl apply -f manifest/bank-client-deploy.yaml -n $region_3-roach-bank
 ```
 
 ```
