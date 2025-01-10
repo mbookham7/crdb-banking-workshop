@@ -82,16 +82,15 @@ spec:
   - port: 26257
     targetPort: 26257
     name: grpc
-    nodePort: 30100
+    nodePort: 30200
   # The secondary port serves the UI as well as health and debug endpoints.
   - port: 8080
     targetPort: 8080
     name: http
-    nodePort: 30110
+    nodePort: 30210
   selector:
     app: cockroachdb
   type: NodePort
-  
 ---
 apiVersion: v1
 kind: Service
@@ -146,7 +145,7 @@ kind: StatefulSet
 metadata:
   name: cockroachdb
   # TODO: Use this field to specify a namespace other than "default" in which to deploy CockroachDB (e.g., us-east-1).
-  namespace: eu-west-1
+  namespace: uksouth
 spec:
   serviceName: "cockroachdb"
   replicas: 1
@@ -172,8 +171,8 @@ spec:
                   - cockroachdb
               topologyKey: kubernetes.io/hostname
       # This init container is used to determine the availability zones of the Cockroach pods. The AZs are used to define --locality when starting Cockroach nodes.
-      # initContainers:
-      # - command:
+      #initContainers:
+      #- command:
       #  - sh
       #  - -ecx
       #  - echo "aws-$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone/)"
@@ -255,8 +254,8 @@ spec:
             --certs-dir /cockroach/cockroach-certs
             --advertise-host $(hostname -f)
             --http-addr 0.0.0.0
-            --join cockroachdb-0.cockroachdb.eu-west-1,cockroachdb-1.cockroachdb.eu-west-1,cockroachdb-2.cockroachdb.eu-west-1,cockroachdb-0.cockroachdb.europe-west4,cockroachdb-1.cockroachdb.europe-west4,cockroachdb-2.cockroachdb.europe-west4,cockroachdb-0.cockroachdb.uksouth,cockroachdb-1.cockroachdb.uksouth,cockroachdb-2.cockroachdb.uksouth
-            --locality=cloud=aws,region=eu-west-1
+            --join cockroachdb-0.cockroachdb.eu-west-1,cockroachdb-1.cockroachdb.eu-west-1,cockroachdb-2.cockroachdb.eu-west-1,cockroachdb-0.cockroachdb.us-east-1,cockroachdb-1.cockroachdb.us-east-1,cockroachdb-2.cockroachdb.us-east-1,cockroachdb-0.cockroachdb.eu-north-1,cockroachdb-1.cockroachdb.eu-north-1,cockroachdb-2.cockroachdb.eu-north-1
+            --locality=cloud=aws,region=us-east-1
             --cache $(expr $MEMORY_LIMIT_MIB / 4)MiB
             --max-sql-memory $(expr $MEMORY_LIMIT_MIB / 4)MiB
       # No pre-stop hook is required, a SIGTERM plus some time is all that's

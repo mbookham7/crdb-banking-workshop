@@ -3,7 +3,7 @@
 # Add Docker's official GPG key:
 ```
 sudo apt-get update
-sudo apt-get install ca-certificates curl
+sudo apt-get install ca-certificates curl -y
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -192,9 +192,9 @@ rm certs/node.key
 Deploy the three separate StatefulSet.
 > There are some hard codes region names in these files. If you have changed the region names you will need to edit these files. You may also want to adjust the replica count and resource requests and limits depending on your computer spec.
 ```
-kubectl apply -f manifest/aws-cockroachdb-statefulset-secure.yaml -n $region_1
-kubectl apply -f manifest/gke-cockroachdb-statefulset-secure.yaml -n $region_2
-kubectl apply -f manifest/azure-cockroachdb-statefulset-secure.yaml -n $region_3
+kubectl apply -f manifest/region_1-cockroachdb-statefulset-secure.yaml -n $region_1
+kubectl apply -f manifest/region_2-cockroachdb-statefulset-secure.yaml -n $region_2
+kubectl apply -f manifest/region_3-cockroachdb-statefulset-secure.yaml -n $region_3
 ```
 
 Once the pods are deployed we need to initialize the cluster. This is done by 'execing' into the container and running the `cockroach init` command.
@@ -242,9 +242,9 @@ kubectl create namespace $region_3-roach-bank
 ```
 
 ```
-kubectl apply -f ./manifest/aws-deployment.yaml -n $region_1-roach-bank
-kubectl apply -f ./manifest/gke-deployment.yaml -n $region_2-roach-bank
-kubectl apply -f ./manifest/azure-deployment.yaml -n $region_3-roach-bank
+kubectl apply -f ./manifest/region_1-deployment.yaml -n $region_1-roach-bank
+kubectl apply -f ./manifest/region_2-deployment.yaml -n $region_2-roach-bank
+kubectl apply -f ./manifest/region_3-deployment.yaml -n $region_3-roach-bank
 ```
 
 ```
