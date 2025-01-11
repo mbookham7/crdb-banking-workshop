@@ -27,18 +27,13 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 wget https://binaries.cockroachdb.com/cockroach-latest.linux-amd64.tgz
 tar -xvzf cockroach-latest.linux-amd64.tgz
 sudo cp cockroach-*/cockroach /usr/local/bin/
-echo cockroach version
+echo $(cockroach version)
 
 # Create a cluster named `banking-workshop` with just a single server node:
 k3d cluster create banking-workshop --api-port 6550 -p 30000-30400:30000-30400@server:0
 
 # Use the new cluster with kubectl, e.g.:
-echo kubectl get nodes
-
-## Deploy CockroachDB into the the k3d cluster
-git clone https://github.com/mbookham7/crdb-banking-workshop.git
-cd crdb-banking-workshop
-
+echo $(kubectl get nodes)
 
 # Create three variables with the region names desired.
 export region_1="eu-west-1"
@@ -157,6 +152,8 @@ kubectl apply -f ./manifest/region_3-cockroachdb-statefulset-secure.yaml -n $reg
 
 # Once the pods are deployed we need to initialize the cluster. This is done by 'execing' into the container and running the `cockroach init` command.
 
+sleep 30s
+
 kubectl exec \
 --namespace $region_1 \
 -it cockroachdb-0 \
@@ -165,14 +162,17 @@ kubectl exec \
 
 # Check that all the pods have started successfully.
 
-echo kubectl get pods --namespace $region_1
-echo kubectl get pods --namespace $region_2
-echo kubectl get pods --namespace $region_3
+echo $(kubectl get pods --namespace $region_1)
+echo $(kubectl get pods --namespace $region_2)
+echo $(kubectl get pods --namespace $region_3)
 
 # Next, create a secure client in the first region.
 kubectl create -f manifest/client-secure.yaml --namespace $region_1
 
 # Create a SQL User and Roach Bank Database
+
+sleep 30s
+
 kubectl exec -it cockroachdb-client-secure -n $region_1 -- ./cockroach sql -f https://raw.githubusercontent.com/mbookham7/crdb-banking-workshop/refs/heads/master/scripts/create_user_and_database.sql --certs-dir=/cockroach-certs --host=cockroachdb-public
 
 # Create namespaces for Roach Bank
@@ -186,9 +186,9 @@ kubectl apply -f ./manifest/region_2-deployment.yaml -n $region_2-roach-bank
 kubectl apply -f ./manifest/region_3-deployment.yaml -n $region_3-roach-bank
 
 # Check the Roach Bank Server pods are running
-echo kubectl get po -n $region_1-roach-bank
-echo kubectl get po -n $region_2-roach-bank
-echo kubectl get po -n $region_3-roach-bank
+echo $(kubectl get po -n $region_1-roach-bank)
+echo $(kubectl get po -n $region_2-roach-bank)
+echo $(kubectl get po -n $region_3-roach-bank)
 
 # Apply Roach Bank Client configmap
 kubectl apply -f ./manifest/bank-client-config.yaml -n $region_1-roach-bank
@@ -201,9 +201,9 @@ kubectl apply -f manifest/bank-client-deploy.yaml -n $region_2-roach-bank
 kubectl apply -f manifest/bank-client-deploy.yaml -n $region_3-roach-bank
 
 # Check the Roach Bank Server pods are running
-echo kubectl get po -n $region_1-roach-bank
-echo kubectl get po -n $region_2-roach-bank
-echo kubectl get po -n $region_3-roach-bank
+echo $(kubectl get po -n $region_1-roach-bank)
+echo $(kubectl get po -n $region_2-roach-bank)
+echo $(kubectl get po -n $region_3-roach-bank)
 
 
-echo kubectl get svc -A
+echo $(kubectl get svc -A)
