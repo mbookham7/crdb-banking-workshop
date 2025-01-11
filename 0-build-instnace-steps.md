@@ -55,8 +55,9 @@ git clone https://github.com/mbookham7/crdb-banking-workshop.git
 cd crdb-banking-workshop
 ```
 ```
-cd /scripts
+cd scripts
 chmod a+x build_ami.sh
+./build_ami.sh
 ```
 
 Create three variables with the region names desired.
