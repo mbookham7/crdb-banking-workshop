@@ -15,7 +15,7 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-sudo usermod -aG docker $USER && newgrp docker
+# sudo usermod -aG docker $USER && newgrp docker
 
 # Install k3d and kubectl on to your server
 wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
