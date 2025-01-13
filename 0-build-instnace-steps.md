@@ -56,7 +56,7 @@ cd crdb-banking-workshop
 ```
 ```
 cd scripts
-chmod a+x build_ami.sh install_dacker.sh
+chmod a+x build_ami.sh install_docker.sh
 ./install_docker.sh
 ./build_ami.sh
 ```
