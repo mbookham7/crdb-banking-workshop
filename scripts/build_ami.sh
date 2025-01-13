@@ -167,6 +167,8 @@ kubectl apply -f ../manifest/region_2-deployment.yaml -n $region_2-roach-bank
 kubectl apply -f ../manifest/region_3-deployment.yaml -n $region_3-roach-bank
 
 # Check the Roach Bank Server pods are running
+sleep 30s
+
 echo $(kubectl get po -n $region_1-roach-bank)
 echo $(kubectl get po -n $region_2-roach-bank)
 echo $(kubectl get po -n $region_3-roach-bank)
@@ -182,9 +184,8 @@ kubectl apply -f ../manifest/bank-client-deploy.yaml -n $region_2-roach-bank
 kubectl apply -f ../manifest/bank-client-deploy.yaml -n $region_3-roach-bank
 
 # Check the Roach Bank Server pods are running
+sleep 30s
+
 echo $(kubectl get po -n $region_1-roach-bank)
 echo $(kubectl get po -n $region_2-roach-bank)
 echo $(kubectl get po -n $region_3-roach-bank)
-
-
-echo $(kubectl get svc -A)
