@@ -1,4 +1,15 @@
+# Setup Enviroment
 
+```
+git clone https://github.com/mbookham7/crdb-banking-workshop.git
+cd crdb-banking-workshop
+```
+```
+cd scripts
+chmod a+x build_ami.sh install_docker.sh
+./install_docker.sh
+./build_ami.sh
+```
 
 # Add Docker's official GPG key:
 ```
@@ -49,17 +60,6 @@ kubectl get nodes
 ```
 
 ## Deploy CockroachDB into the the k3d cluster
-
-```
-git clone https://github.com/mbookham7/crdb-banking-workshop.git
-cd crdb-banking-workshop
-```
-```
-cd scripts
-chmod a+x build_ami.sh install_docker.sh
-./install_docker.sh
-./build_ami.sh
-```
 
 Create three variables with the region names desired.
 ```
@@ -233,11 +233,6 @@ CREATE database roach_bank;
 USE roach_bank;
 \q
 ```
-
-export region_1="eu-west-1"
-export region_2="europe-west4"
-export region_3="uksouth"
-
 
 ```
 kubectl create namespace $region_1-roach-bank

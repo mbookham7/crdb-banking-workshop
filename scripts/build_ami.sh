@@ -147,14 +147,12 @@ echo $(kubectl get pods --namespace $region_1)
 echo $(kubectl get pods --namespace $region_2)
 echo $(kubectl get pods --namespace $region_3)
 
-# Next, create a secure client in the first region.
-kubectl create -f ../manifest/client-secure.yaml --namespace $region_1
-
 # Create a SQL User and Roach Bank Database
 
-sleep 30s
+sleep 5s
 
-kubectl exec -it cockroachdb-client-secure -n $region_1 -- ./cockroach sql -f https://raw.githubusercontent.com/mbookham7/crdb-banking-workshop/refs/heads/master/scripts/create_user_and_database.sql --certs-dir=/cockroach-certs --host=cockroachdb-public
+cockroach sql -f create_user_and_database.sql --certs-dir=certs --host=localhost:30300
+
 
 # Create namespaces for Roach Bank
 kubectl create namespace $region_1-roach-bank
