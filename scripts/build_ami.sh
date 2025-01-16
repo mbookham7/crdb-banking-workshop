@@ -149,7 +149,7 @@ echo $(kubectl get pods --namespace $region_3)
 
 # Create a SQL User and Roach Bank Database
 
-sleep 5s
+sleep 30s
 
 cockroach sql -f create_user_and_database.sql --certs-dir=certs --host=localhost:30300
 
