@@ -143,6 +143,8 @@ kubectl exec \
 
 # Check that all the pods have started successfully.
 
+sleep 30s
+
 echo $(kubectl get pods --namespace $region_1)
 echo $(kubectl get pods --namespace $region_2)
 echo $(kubectl get pods --namespace $region_3)
