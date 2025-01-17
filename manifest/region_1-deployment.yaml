@@ -6,7 +6,7 @@ metadata:
     app: bank-server
   name: bank-server
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: bank-server

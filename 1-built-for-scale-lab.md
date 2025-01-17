@@ -10,6 +10,10 @@ kubectl get po -n $region_2
 kubectl get po -n $region_3
 ```
 
+Look at number of replicas per node
+
+Look at the number of leaseholders per node.
+
 Increase the number of replicas for each of the StatefulSet in each of the regions.
 ```
 kubectl scale statefulsets cockroachdb --replicas=2 -n $region_1
