@@ -1,22 +1,55 @@
-# Setup Lab Environment  
+Here's the improved and cleanly formatted markdown for this lab:
 
-All of the code for this lab is stored in a github repository. Using the commands below clone the repo and change directory into the folder containing the code.
+---
 
-```
+# **Setup Lab Environment**
+
+This lab requires a prepared environment to work with **CockroachDB** and **Roach Bank**. Follow the steps below to set up all the necessary components.
+
+---
+
+## **Step 1: Clone the Lab Repository**
+
+All the code for this lab is stored in a GitHub repository. Clone the repository and navigate to the directory containing the code:
+
+```bash
 git clone https://github.com/mbookham7/crdb-banking-workshop.git
 cd crdb-banking-workshop
 ```
 
-To install all the required components we need to run a couple of shell scripts. CockroachDB and Roach Bank will be running in Kubernetes. To do this change into the scripts directory, then make the two shell scripts executable and run the first script. This script installs Docker as k3d is the Kubernetes install that will be used.
+---
 
-```
-cd scripts
-chmod a+x build_ami.sh install_docker.sh
-./install_docker.sh
-```
-Now that Docker is installed and working the remaining prerequisites can be installed and CockroachDB along with Roach Bank, our application.
+## **Step 2: Install Required Components**
 
-```
+CockroachDB and Roach Bank will run in Kubernetes, using **k3d** as the Kubernetes runtime. To install all the required components, follow these steps:
+
+1. Navigate to the `scripts` directory:
+   ```bash
+   cd scripts
+   ```
+
+2. Make the shell scripts executable:
+   ```bash
+   chmod a+x build_ami.sh install_docker.sh
+   ```
+
+3. Run the `install_docker.sh` script to install Docker, as it is required for k3d:
+   ```bash
+   ./install_docker.sh
+   ```
+
+---
+
+## **Step 3: Install Prerequisites and Deploy CockroachDB**
+
+Once Docker is installed and running, run the `build_ami.sh` script to install the remaining prerequisites and deploy CockroachDB along with Roach Bank:
+
+```bash
 ./build_ami.sh
 ```
-The lab environment should now be ready for the first lab.
+
+---
+
+## **Step 4: Verify Lab Environment**
+
+The lab environment is now ready for use. Move on to the first lab to begin exploring **CockroachDB** and **Roach Bank**.
