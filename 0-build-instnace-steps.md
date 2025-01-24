@@ -1,7 +1,3 @@
-Here's the improved and cleanly formatted markdown for this lab:
-
----
-
 # **Setup Lab Environment**
 
 This lab requires a prepared environment to work with **CockroachDB** and **Roach Bank**. Follow the steps below to set up all the necessary components.

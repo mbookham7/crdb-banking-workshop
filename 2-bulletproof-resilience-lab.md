@@ -1,7 +1,3 @@
-Got it! Here's the updated lab document with a note emphasizing that **Step 3** should be performed in a **new terminal window**:  
-
----
-
 # **CockroachDB Bulletproof Resilience Lab**
 
 ## **Introduction**  
