@@ -19,19 +19,19 @@ This repository provides a hands-on technical workshop for engineers and archite
 ## **Workshop Labs**  
 
 ### **Lab 1: Setup Lab Environment**  
-[**View Lab Guide**](labs/0-setup-lab-environment.md)  
+[**View Lab Guide**](/markdown/0-build-instnace-steps.md)  
 This lab guides you through setting up the workshop environment. You’ll clone the repository, install prerequisites, and configure CockroachDB to run in Kubernetes.  
 
 ---
 
 ### **Lab 2: Built for Scale**  
-[**View Lab Guide**](labs/1-built-for-scale-lab.md)  
+[**View Lab Guide**](/markdown/1-built-for-scale-lab.md)  
 In this lab, you’ll explore CockroachDB’s scalability features. Learn how the database automatically handles distributed workloads and scales horizontally across nodes.  
 
 ---
 
 ### **Lab 3: Bulletproof Resilience**  
-[**View Lab Guide**](labs/2-bulletproof-resilience-lab.md)  
+[**View Lab Guide**](/markdown/2-bulletproof-resilience-lab.md)  
 This lab focuses on CockroachDB’s fault tolerance. You’ll simulate node failures, monitor data recovery, and observe how CockroachDB ensures availability and consistency during disruptions.  
 
 ---
@@ -48,8 +48,4 @@ This lab focuses on CockroachDB’s fault tolerance. You’ll simulate node fail
 
 3. Work through each subsequent lab to explore CockroachDB’s features.  
 
-By completing this workshop, you’ll gain hands-on experience with CockroachDB’s unique capabilities for handling the demands of modern banking applications.  
-
---- 
-
-Let me know if there are any specific details you'd like to add or adjust!
+By completing this workshop, you’ll gain hands-on experience with CockroachDB’s unique capabilities for handling the demands of modern banking applications.
