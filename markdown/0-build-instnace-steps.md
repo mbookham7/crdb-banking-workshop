@@ -50,8 +50,8 @@ Once Docker is installed and running, run the `build_ami.sh` script to install t
 
 The lab environment is now ready for use. Move on to the first lab to begin exploring **CockroachDB** and **Roach Bank**.
 
-[**Home**](/README.md)
-
 <div style="position: fixed; bottom: 10px; right: 10px; font-size: 14px; color: gray;">
   <a href="/markdown/1-built-for-scale-lab.md" style="text-decoration: none; color: black;">Go to Lab 1</a>
 </div>
+
+[**Home**](/README.md)

@@ -126,3 +126,9 @@ In this lab, you gained hands-on experience with scaling a distributed database 
 These activities demonstrated CockroachDB’s ability to dynamically redistribute workload across nodes, ensuring efficient resource utilization and high availability. The rebalancing process highlighted the database’s fault tolerance and scalability features, critical for modern applications that demand resilience and low latency under fluctuating loads.  
 
 By completing this lab, you have developed a deeper understanding of CockroachDB’s distributed architecture and how it simplifies scaling while maintaining consistency and reliability in real-world scenarios.
+
+<div style="position: fixed; bottom: 10px; right: 10px; font-size: 14px; color: gray;">
+  <a href="/markdown/2-bulletproof-resilience-lab.md" style="text-decoration: none; color: black;">Go to Lab 2</a>
+</div>
+
+[**Home**](/README.md)

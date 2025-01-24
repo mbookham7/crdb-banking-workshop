@@ -142,3 +142,9 @@ This hands-on experience highlights CockroachDB’s robust architecture and its 
 You now have practical insights into how distributed systems like CockroachDB handle real-world challenges, ensuring high availability, data integrity, and performance.  
 
 **Congratulations on completing the lab!**
+
+<div style="position: fixed; bottom: 10px; right: 10px; font-size: 14px; color: gray;">
+  <a href="/markdown/3-thrive-anywhere-lab.md" style="text-decoration: none; color: black;">Go to Lab 3</a>
+</div>
+
+[**Home**](/README.md)
