@@ -60,9 +60,13 @@ To observe CockroachDB’s behavior during failure simulations, follow these ste
 export region_1="eu-west-1"  
 export region_2="us-east-1"  
 export region_3="eu-north-1"  
-``` 
+```
 
+Navigate to the `scripts` directory.
 
+```bash
+cd crdb-banking-workshop/scripts/
+```
 
 ### **Action 1: Delete a Node (Pod)**  
 
