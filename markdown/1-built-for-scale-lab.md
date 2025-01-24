@@ -1,4 +1,4 @@
-# **Lab 1 - Lab 2: CockroachDB Built for Scale**  
+# **Lab 1 - CockroachDB Built for Scale**  
 
 ## **Introduction to the Roach Bank Scaling Lab**  
 

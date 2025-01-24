@@ -1,10 +1,10 @@
-# **Lab 2: CockroachDB Bulletproof Resilience Lab**
+# **Lab 2 - CockroachDB Bulletproof Resilience**
 
 ## **Introduction to the Roach Bank Resilience Lab**   
 
 In this hands-on lab, you'll explore the resilience and fault-tolerance capabilities of **CockroachDB**, a modern distributed SQL database designed for mission-critical applications. CockroachDB is engineered to handle unexpected failures gracefully while ensuring data integrity and availability.  
 
-### **Key Objectives**  
+### **Objectives**  
 
 By completing this lab, you will:  
 
