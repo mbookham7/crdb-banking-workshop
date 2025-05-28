@@ -86,6 +86,7 @@ A **GLOBAL table** is **replicated across all regions** in the cluster.
 #### ➕ Convert `region` table to a global table:
 
 ```sql
+USE roach_bank;
 ALTER TABLE region SET LOCALITY GLOBAL;
 ```
 
@@ -97,7 +98,15 @@ To verify data distribution after setting global locality:
 SHOW RANGES FROM TABLE region;
 ```
 
+As you can  see from the example output below there is now a replica on every node. Three voting replicas and two non voting replicas.
+
+```sql
+   start_key   |   end_key    | range_id |  replicas   |                                                                  replica_localities                                                                  | voting_replicas | non_voting_replicas | learner_replicas | split_enforced_until
+---------------+--------------+----------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+---------------------+------------------+-----------------------
+  …/<TableMin> | …/<TableMax> |       89 | {1,2,3,5,6} | {"cloud=aws,region=eu-west-1","cloud=aws,region=us-east-1","cloud=aws,region=eu-north-1","cloud=aws,region=us-east-1","cloud=aws,region=eu-north-1"} | {2,3,5}         | {1,6}               | {}               | NULL
+(1 row)
 ---
+```
 
 ## 📌 **Step 5: Pin Data to Regional Locality (REGIONAL BY ROW)**
 
@@ -214,4 +223,6 @@ In this lab, you:
 * Learned how CockroachDB handles **automatic failover, consistency, and high availability**
 
 > 💬 **Explore further**: Try simulating a node failure and querying regional data to see how the cluster responds in real time!
+
+[**Home**](/README.md)
 

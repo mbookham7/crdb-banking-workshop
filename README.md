@@ -36,6 +36,12 @@ This lab focuses on CockroachDB’s fault tolerance. You’ll simulate node fail
 
 ---
 
+### **Lab 4: Thrive Anywhere**  
+[**View Lab Guide**](/markdown/3-thrive-anywhere-lab.md)  
+This lab focuses on CockroachDB’s data locality. You’ll use features to allow data to be accessed from anywhere for fast reads, you'll pin data to certain localities to improve write performance, and observe how CockroachDB ensures availability and consistency while achieving this.  
+
+---
+
 ## **How to Use This Repository**  
 
 1. Clone the repository:  

@@ -27,9 +27,9 @@ By the end of this session, youâ€™ll have a deeper understanding of CockroachDBâ
 Define the three regions where CockroachDB is currently running:  
 
 ```bash
-export region_1="eu-west-1"  
-export region_2="us-east-1"  
-export region_3="eu-north-1"  
+export region_1="eu-west-1"
+export region_2="us-east-1" 
+export region_3="eu-north-1"
 ```  
 
 ---

@@ -17,7 +17,7 @@ spec:
         app: bank-client
     spec:
       containers:
-      - image: docker.io/mikebookhamcap/bank-client:2.0.1
+      - image: docker.io/mikebookhamcap/bank-client:2.1.1
         imagePullPolicy: Always
         name: bank-client
         args: ["@/cnb/process/config/commands.txt"]
