@@ -1,7 +1,3 @@
-Here’s an improved version of your lab, with clearer structure, richer explanations, and polished Markdown formatting. I've also added missing steps, inline tips, and clarified some of the technical concepts for better learning impact.
-
----
-
 # 🚀 **Lab 3 - CockroachDB: Thrive Anywhere**
 
 ## 🧪 **Introduction: Roach Bank Data Placement Lab**
